@@ -3,7 +3,7 @@
 VERSION="0.1"
 
 # GenotypeGVCFs
-# Entrypoint script for docker container achalneupane/combinegvcfv2:${VERSION}
+# Entrypoint script for docker container achalneupane/combinegvcfs:${VERSION}
 
 # Parameters must be defined so the script knows which file(s) to process
 # Required parameters (must provide or container will quit)
@@ -88,12 +88,6 @@ fi
 
 
 
-# if [ -z "${RUN_TYPE}" ]; then
-#     echo "ERROR, must provide run type (genome, paddedexome, exome) in variable \${RUN_TYPE}"
-#     # TODO: Should validate RUN_TYPE against genome, exome, paddedexome
-#     quit "Job Config"
-# fi
-
 if [ ! -z "${TIMING}" ]; then TIMING=(/usr/bin/time -v); fi
 
 # Set locations based on ${BASE}, which is set via env variable
@@ -101,21 +95,11 @@ if [ ! -z "${TIMING}" ]; then TIMING=(/usr/bin/time -v); fi
 if [ -z "${BASE}" ]; then echo "Error, BASE not specified"; quit "Job Config"; fi
 echo "Running on system ${SYSTEM:=UNDEFINED}, BASE set to ${BASE}"
 
-# if [ "${RUN_TYPE}" = "genome" ]; then
-#     GATK_PARAMS=""
-# elif [ "${RUN_TYPE}" = "exome" ]; then
-#     GATK_PARAMS="-L ${COVERED_BED}"
-# elif [ "${RUN_TYPE}" = "paddedexome" ]; then
-#     GATK_PARAMS="-L ${PADDED_BED}"
-# else
-#     echo "Error, invalid RUN_TYPE specified"
-#     quit "Job Config"
-# fi
 
 # gendb://my_database
 
 ################# 
-#GenomicsDBImport
+#combinegvcfs
 #################
 CUR_STEP="CombineGVCFs"
 start=$(${DATE}); echo "[$(display_date ${start})] ${CUR_STEP} starting"
@@ -130,9 +114,5 @@ end=$(${DATE}); echo "[$(display_date ${end})] ${CUR_STEP} finished, exit code: 
 ################# 
 
 
-
-# if [ "${SYSTEM}" = "MGI" ]; then
-#   mv -vf "${BAMFILE}" "${BASE}/tmp/"
-# fi
 
 exit ${exitcode}
