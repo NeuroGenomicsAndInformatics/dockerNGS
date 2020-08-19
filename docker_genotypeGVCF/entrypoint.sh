@@ -8,14 +8,26 @@ VERSION="0.1"
 # Parameters must be defined so the script knows which file(s) to process
 # Required parameters (must provide or container will quit)
 #   BASE        location of parent directories for input_files, running_jobs
-#   BAMFILE     .bam input file on which to perform Haplotype Variant Calling
-#   RUN_TYPE    required for now, may be dropped in the future
-# Just in case of symlinks, which cause problems for some programs
-# REF="${BASE}/Genome_Ref/GRCh38/Homo_sapiens_assembly38.fasta"; \
-# CCDS="${BASE}/GATK_pipeline/Reference/GRCh83/GRCh38.CCDS.exons.sorted.bed" ;\
-# DBSNP1="${BASE}/Genome_Ref/GRCh38/20190522_bundle/dbsnp_138.hg38.vcf.gz" ;\
-# PADDED_BED="${BASE}/Genome_Ref/GRCh38/Capture_Padded.GRCh38.bed" ;\
-# COVERED_BED="${BASE}/Genome_Ref/GRCh38/Capture_Covered.GRCh38.bed" ;\
+
+# # To run:
+# EMAIL="achal@wustl.edu"
+#   export BASE="/gscmnt/gc2645/wgs"; \
+#   export TILEDB_DISABLE_FILE_LOCKING=1; \
+#   export MEM=32; \
+#   export REF="${BASE}/Genome_Ref/GRCh38/Homo_sapiens_assembly38.fasta"; \
+#   export DB="-V gendb:///${BASE}/WXS_Aquilla/gvcfTest/output"; \
+#   export tmpPATH="--tmp-dir=${BASE}/WXS_Aquilla/gvcfTest/temp"; \
+#   export OUTvcf="${BASE}/WXS_Aquilla/gvcfTest/SNP/test.vcf"; \
+#   bsub \
+#   -J "Allchr" \
+#     -u "${EMAIL}" \
+#     -n1 -W 2880 \
+#     -M 46000000 \
+#     -R "rusage[mem=49152]" \
+#     -o "${BASE}/WXS_Aquilla/gvcfTest/SNP" \
+#     -q research-hpc \
+#     -a "docker(achalneupane/genotypegvcfs)" \
+#   entrypoint.sh;
 
 # Optional parameters
 #   MEM         Memory Limit in GB (e.g. 32), defaults to 4
