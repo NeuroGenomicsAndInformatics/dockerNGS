@@ -2,6 +2,32 @@
 
 VERSION="0.1"
 
+# TO RUN: 
+# Entrypoint script for docker container achalneupane/combinegvcfs:${VERSION}
+
+# Parameters must be defined so the script knows which file(s) to process
+# Required parameters (must provide or container will quit)
+#   BASE        location of parent directories for input_files, running_jobs
+  # EMAIL="achal@wustl.edu"
+  #   export BASE="/gscmnt/gc2645/wgs"; \
+  #   export TILEDB_DISABLE_FILE_LOCKING=1; \
+  # export MEM=32; \
+  # export REF="${BASE}/Genome_Ref/GRCh38/Homo_sapiens_assembly38.fasta"; \
+  # export OUTgvcf="${BASE}/WXS_Aquilla/gvcfTest/combineGVCF/test.g.vcf.gz"; \
+  # export GATK_REGIONS="-L chrY"; \
+  # export mygvcfList="/gscmnt/gc2645/wgs/WXS_Aquilla/gvcfTest/combineGVCF.list"; \
+  # bsub \
+  #   -J "Allchr" \
+  #   -u "${EMAIL}" \
+  #   -n1 -W 2880 \
+  #   -M 46000000 \
+  #   -R "rusage[mem=49152]" \
+  #   -o "${BASE}/WXS_Aquilla/gvcfTest/combineGVCF" \
+  #   -q research-hpc \
+  #   -a "docker(achalneupane/combinegvcfs)" \
+  #   entrypoint.sh;
+
+
 # Optional parameters
 #   MEM         Memory Limit in GB (e.g. 32), defaults to 4
 #   SHELLDROP   Drop to shell instead of running anything (used with docker)
