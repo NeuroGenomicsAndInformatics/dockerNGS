@@ -1,4 +1,6 @@
-#### Building DOCKER image for GATK-4.0
+########################################
+## Building DOCKER image for GATK-4.0 ##
+########################################
 # Specify the base image -- here we're using one that bundles the OpenJDK version of Java 8 on top of a generic Debian Linux OS
 # OpenJDK is an open-source implementation of the Java Platform, Standard Edition
 FROM openjdk:8-jre
@@ -36,7 +38,7 @@ RUN apt-get update -y && apt-get install -y \
 
 
 ##################
-#### GATK 4.1.2.0 ####
+## GATK 4.1.2.0 ##
 ##################
 
 #Install GATK4
